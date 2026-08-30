@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const LoginMain = () => {
@@ -11,6 +11,10 @@ const LoginMain = () => {
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
     const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
+
+    useEffect(() => {
+        console.log(BACKEND_LIVE_URL);
+    },[])
 
     const submitHandler = async (e) => {
         e.preventDefault();
