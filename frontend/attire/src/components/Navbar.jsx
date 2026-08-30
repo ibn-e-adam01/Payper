@@ -12,10 +12,11 @@ setNoOfCarted}) => {
     const [User, setUser] = useState("");
     const [AccountProfession, setAccountProfession] = useState("");
     const { EnabledDark, setEnabledDark } = useTheme(false); 
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
 
     useEffect(() => {
         const getUserData = async () => {
-            let userData = await axios.get("http://localhost:3000/", {
+            let userData = await axios.get(`${BACKEND_LIVE_URL}/`, {
                 withCredentials: true
             });
             if(userData?.data?.success == true){
@@ -73,7 +74,7 @@ setNoOfCarted}) => {
         <div className='flex items-center justify-center gap-5 lg:hidden'>
         <FontAwesomeIcon className='text-2xl' icon={faMagnifyingGlass} />
         
-        <FontAwesomeIcon className='active:scale-99' icon={faCartShopping} className='text-xl'/>
+        <FontAwesomeIcon className='active:scale-99 text-xl' icon={faCartShopping}/>
         {NoOfCarted.length > 0 && NoOfCarted.map((Number) => (
         <div className='w-auto absolute z-10 top-2.5 md:right-19 right-5.5 h-auto px-1.5 py-0.5 rounded-full bg-blue-500 text-white flex items-center justify-center'><p className='text-xs font-semibold'>{Number?.length}</p></div>
       ))}

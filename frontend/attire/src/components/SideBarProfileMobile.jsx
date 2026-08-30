@@ -12,13 +12,14 @@ const SideBarProfileMobile = ({EnabledDark, setEnabledDark}) => {
     const MySwal = withReactContent(Swal);
     const [UserLoggedInSideBarProfile, setUserLoggedInSideBarProfile] = useState("");
     const { NotLoggedIn, setNotLoggedIn } = useTheme(false); 
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
     
     
 
     useEffect(() => {
         try{
             const getUserData = async () => {
-                let userData = await axios.get("http://localhost:3000/", {
+                let userData = await axios.get(`${BACKEND_LIVE_URL}/`, {
                     withCredentials: true
                 });
     
@@ -58,7 +59,7 @@ const SideBarProfileMobile = ({EnabledDark, setEnabledDark}) => {
     });
 
     if(deleteMyAccount.isConfirmed){
-        let deleteAPI = await axios.delete("http://localhost:3000/deleteAccount", {withCredentials: true});
+        let deleteAPI = await axios.delete(`${BACKEND_LIVE_URL}/deleteAccount`, {withCredentials: true});
 
         if(deleteAPI?.data?.success == true){
         MySwal.fire(
@@ -73,7 +74,7 @@ const SideBarProfileMobile = ({EnabledDark, setEnabledDark}) => {
      const logout = async (e) => {
           e.preventDefault();
   
-          let logoutUser = await axios.post("http://localhost:3000/logout", {}, {withCredentials: true});
+          let logoutUser = await axios.post(`${BACKEND_LIVE_URL}/logout`, {}, {withCredentials: true});
   
           if(logoutUser?.data?.success == true){
               console.log(logoutUser?.data?.message);

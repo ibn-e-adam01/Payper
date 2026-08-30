@@ -24,6 +24,7 @@ const SellerPageApplyMain = ({MenuIsOpen, setMenuIsOpen}) => {
     const [PasswordSeller, setPasswordSeller] = useState('');
     const [BusinessDescription, setBusinessDescription] = useState('');
     const navigate = useNavigate();
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
 
 
     const sendSellerData = async (e) => {
@@ -38,7 +39,7 @@ const SellerPageApplyMain = ({MenuIsOpen, setMenuIsOpen}) => {
             PasswordSeller
         }
 
-        const sellerResponse = await axios.post("http://localhost:3000/createSellerAccount", SellerData, {headers: {
+        const sellerResponse = await axios.post(`${BACKEND_LIVE_URL}/createSellerAccount`, SellerData, {headers: {
             'Content-Type' : 'application/json'
         }, withCredentials: true
         });

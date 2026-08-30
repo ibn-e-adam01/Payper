@@ -29,10 +29,11 @@ const PurchasePortalMain = ({MenuIsOpen, setMenuIsOpen}) => {
     const [UserID, setUserID] = useState('');
     const [Error, setError] = useState('');
     const [Currency, setCurrency] = useState('USD');
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
 
     useEffect(() => {
          const getUserData = async () => {
-            let userData = await axios.get("http://localhost:3000/", {
+            let userData = await axios.get(`${BACKEND_LIVE_URL}/`, {
                 withCredentials: true
             });
                 
@@ -467,7 +468,7 @@ const PurchasePortalMain = ({MenuIsOpen, setMenuIsOpen}) => {
 
                     setError('');
                 
-                    let paymentGatewayRes = await axios.post(`http://localhost:3000/payment-gateway-portal/${UserID}`, {}, {withCredentials: true});
+                    let paymentGatewayRes = await axios.post(`${BACKEND_LIVE_URL}/payment-gateway-portal/${UserID}`, {}, {withCredentials: true});
 
                     if(paymentGatewayRes?.data){
                          console.log(paymentGatewayRes?.data?.TransactionID)

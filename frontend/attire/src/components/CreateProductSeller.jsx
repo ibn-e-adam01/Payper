@@ -19,7 +19,8 @@ const CreateProductSeller = () => {
     const [ProductStockError, setProductStockError] = useState('');
     const [ProductDescriptionError, setProductDescriptionError] = useState('');
     const [ProductImageError, setProductImageError] = useState('');
-    const { MyProductsClicked, setMyProductsClicked } = useTheme(false); 
+    const { MyProductsClicked, setMyProductsClicked } = useTheme(false);
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL; 
 
     const sendProductCreatedData = async (e) => {
         e.preventDefault();
@@ -34,7 +35,7 @@ const CreateProductSeller = () => {
             ProductImageUrl
         }
 
-        const res = await axios.post("http://localhost:3000/create-new-product", ProductData, {
+        const res = await axios.post(`${BACKEND_LIVE_URL}/create-new-product`, ProductData, {
             headers: {
                 'Content-Type' : 'application/json'
             }, withCredentials: true

@@ -16,6 +16,7 @@ const LoginSeller = () => {
     const [PasswordError, setPasswordError] = useState('');
     const { MyProductsClicked, setMyProductsClicked } = useTheme(false); 
     const { LoginSellerOpen, setLoginSellerOpen } = useTheme(false); 
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
 
     const sendSellerData = async (e) => {
         e.preventDefault();
@@ -26,7 +27,7 @@ const LoginSeller = () => {
            PasswordSeller
         }
 
-        const res = await axios.post("http://localhost:3000/seller/login", sellerData, {
+        const res = await axios.post(`${BACKEND_LIVE_URL}/seller/login`, sellerData, {
             headers: {
                 'Content-Type' : 'application/json'
             }, withCredentials: true

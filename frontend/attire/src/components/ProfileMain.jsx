@@ -24,13 +24,14 @@ const ProfileMain = ({MenuIsOpen, setMenuIsOpen}) => {
     const { NotLoggedIn, setNotLoggedIn } = useTheme(false); 
     // const [EnabledDark, setEnabledDark] = useState(false);
     const MySwal = withReactContent(Swal); 
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
     
 
 
     useEffect(() => {
         try{
         const getUserData = async () => {
-            let userData = await axios.get("http://localhost:3000/", {
+            let userData = await axios.get(`${BACKEND_LIVE_URL}/`, {
                 withCredentials: true
             });
 
@@ -61,7 +62,7 @@ const ProfileMain = ({MenuIsOpen, setMenuIsOpen}) => {
 
     const changeThemeMode = async() => {
 
-        let onDarkTheme = await axios.patch('http://localhost:3000/themeChange', {EnabledDark}, {withCredentials: true});
+        let onDarkTheme = await axios.patch(`${BACKEND_LIVE_URL}/themeChange`, {EnabledDark}, {withCredentials: true});
 
         if(onDarkTheme?.data?.success == true){
             console.log(onDarkTheme?.data);
@@ -74,7 +75,7 @@ const ProfileMain = ({MenuIsOpen, setMenuIsOpen}) => {
             AccountProfession
         }
 
-        let res = await axios.patch('http://localhost:3000/updateAccount', userData, {
+        let res = await axios.patch(`${BACKEND_LIVE_URL}/updateAccount`, userData, {
             headers: {
                 "Content-Type": "application/json"
             }, withCredentials: true
@@ -321,7 +322,7 @@ const ProfileMain = ({MenuIsOpen, setMenuIsOpen}) => {
                 <button className={`cursor-pointer ${EnabledDark == true? 'text-red-400' : 'text-red-700'}`} onClick={async (e) => {
                     e.preventDefault();
 
-                    let remainedUser = await axios.delete("http://localhost:3000/deleteProfession", {AccountProfession, headers:{
+                    let remainedUser = await axios.delete(`${BACKEND_LIVE_URL}/deleteProfession`, {AccountProfession, headers:{
                         'Content-Type': "application/json"
                     }, withCredentials: true});
 

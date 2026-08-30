@@ -15,6 +15,7 @@ const SignUpMain = () => {
     const [lastName, setlastName] = useState("");
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -25,7 +26,7 @@ const SignUpMain = () => {
             Password
         }
 
-        let res = await axios.post('http://localhost:3000/createAccount', userData, {
+        let res = await axios.post(`${BACKEND_LIVE_URL}/createAccount`, userData, {
             headers: {
                 "Content-Type": "application/json"
             }, withCredentials: true

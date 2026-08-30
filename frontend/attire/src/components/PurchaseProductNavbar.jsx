@@ -11,12 +11,13 @@ const PurchaseProductNavbar = ({MenuIsOpen, setMenuIsOpen}) => {
     const [User, setUser] = useState("");
     const [AccountProfession, setAccountProfession] = useState("");
     const [CartNumbers, setCartNumbers] = useState([]);
-    const { EnabledDark, setEnabledDark } = useTheme(false); 
+    const { EnabledDark, setEnabledDark } = useTheme(false);
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL; 
 
      const logout = async (e) => {
           e.preventDefault();
   
-          let logoutUser = await axios.post("http://localhost:3000/logout", {}, {withCredentials: true});
+          let logoutUser = await axios.post(`${BACKEND_LIVE_URL}/logout`, {}, {withCredentials: true});
   
           if(logoutUser?.data?.success == true){
               console.log(logoutUser?.data?.message);
@@ -26,7 +27,7 @@ const PurchaseProductNavbar = ({MenuIsOpen, setMenuIsOpen}) => {
 
     useEffect(() => {
         const getUserData = async () => {
-            let userData = await axios.get("http://localhost:3000/", {
+            let userData = await axios.get(`${BACKEND_LIVE_URL}/`, {
                 withCredentials: true
             });
             if(userData?.data?.success == true){

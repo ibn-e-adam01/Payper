@@ -16,12 +16,13 @@ const MyProductsSeller = () => {
     const [MyProductsSeller, setMyProductsSeller] = useState([]);
     const [ProductId, setProductId] = useState('');
     const {Seller, setSeller} = useTheme([]);
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
     
     useEffect(() => {
         
         const getMyProducts = async (e) => {
 
-            const getProductsCreated = await axios.get('http://localhost:3000/seller/MyProducts', {withCredentials: true});
+            const getProductsCreated = await axios.get(`${BACKEND_LIVE_URL}/seller/MyProducts`, {withCredentials: true});
 
             console.log(getProductsCreated?.data?.MyProducts);
             setMyProductsSeller(getProductsCreated?.data?.MyProducts);
@@ -168,7 +169,7 @@ const MyProductsSeller = () => {
                 </button>
                 <button onClick={ async (e) => {
 
-                    const deleteRes = await axios.delete(`http://localhost:3000/delete/${product?._id}`, {withCredentials: true});
+                    const deleteRes = await axios.delete(`${BACKEND_LIVE_URL}/delete/${product?._id}`, {withCredentials: true});
 
                     if(deleteRes?.data?.success == true){
                     console.log(deleteRes?.data?.message);

@@ -10,6 +10,7 @@ const LoginMain = () => {
     const [ErrorForNoPassword, setErrorForNoPassword] = useState("");
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -18,7 +19,7 @@ const LoginMain = () => {
             Password
         }
 
-        let res = await axios.post('http://localhost:3000/signin', userLogInData, {
+        let res = await axios.post(`${BACKEND_LIVE_URL}/signin`, userLogInData, {
             headers: {
                 "Content-Type": "application/json"
             }, withCredentials: true

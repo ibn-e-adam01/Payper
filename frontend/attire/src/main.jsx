@@ -6,10 +6,11 @@ import Home from './routes/Home.jsx'
 import SignUp from './routes/SignUp.jsx'
 import Login from './routes/Login.jsx'
 import Profile from './routes/Profile.jsx'
-import PurchasePortal from './routes/PurchasePortal.jsx'
+
 import  {ThemeProvider}  from './components/ThemeContext.jsx';
 import BecomeASeller from './routes/BecomeASeller.jsx'
 import SellerDashboard from './routes/SellerDashboard.jsx'
+import PurchasePortal from './routes/purchasePortal.jsx'
 
 createRoot(document.getElementById('root')).render(
   <ThemeProvider>

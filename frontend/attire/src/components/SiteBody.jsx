@@ -16,6 +16,7 @@ const SiteBody = ({HomeMenuIsOpen, setHomeMenuIsOpen, NoOfCarted,setNoOfCarted})
     const [HeartClicked, setHeartClicked] = useState({});
     const [UserID, setUserID] = useState('')
     const { EnabledDark, setEnabledDark } = useTheme(false); 
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
 
     useEffect(() => {
         const getDummyProducts = async () => {
@@ -51,7 +52,7 @@ const SiteBody = ({HomeMenuIsOpen, setHomeMenuIsOpen, NoOfCarted,setNoOfCarted})
         getDummySingleProduct();
 
         const getUserData = async () => {
-                    let userData = await axios.get("http://localhost:3000/", {
+                    let userData = await axios.get(`${BACKEND_LIVE_URL}/`, {
                         withCredentials: true
                     });
         
@@ -136,7 +137,7 @@ const SiteBody = ({HomeMenuIsOpen, setHomeMenuIsOpen, NoOfCarted,setNoOfCarted})
                             setProductID(product.id);
 
                             if(!isThisProductCarted == true){
-                            let userWithCart = await axios.post(`http://localhost:3000/addToCart/${product.id}`, `${product.id}`, {
+                            let userWithCart = await axios.post(`${BACKEND_LIVE_URL}/addToCart/${product.id}`, `${product.id}`, {
                                 withCredentials:true
                             });
 
@@ -145,7 +146,7 @@ const SiteBody = ({HomeMenuIsOpen, setHomeMenuIsOpen, NoOfCarted,setNoOfCarted})
                             }
 
                             } else if (!isThisProductCarted == false){
-                                let removeFromCart = await axios.patch(`http://localhost:3000/removeFromCart/${product.id}`, `${product.id}`, {
+                                let removeFromCart = await axios.patch(`${BACKEND_LIVE_URL}/removeFromCart/${product.id}`, `${product.id}`, {
                                     withCredentials: true
                                 });
 

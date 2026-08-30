@@ -18,6 +18,7 @@ const EditProductSeller = () => {
     const { MyProductsClicked, setMyProductsClicked } = useTheme(false); 
     const { LoginSellerOpen, setLoginSellerOpen } = useTheme(false); 
     const {Seller, setSeller} = useTheme([]);
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
 
 
   return (
@@ -33,7 +34,7 @@ const EditProductSeller = () => {
            Shipped
         }
 
-        const UpdateProductRes = await axios.patch(`http://localhost:3000/updateProduct/${product?._id}`, ExtraRequiredProductData, {withCredentials: true});
+        const UpdateProductRes = await axios.patch(`${BACKEND_LIVE_URL}/updateProduct/${product?._id}`, ExtraRequiredProductData, {withCredentials: true});
         
         if(UpdateProductRes?.data?.success == true){
             console.log(UpdateProductRes?.data);

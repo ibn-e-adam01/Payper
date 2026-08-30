@@ -11,12 +11,13 @@ const SellerDashboard = () => {
     const { MyProductsClicked, setMyProductsClicked } = useTheme(false); 
     const { SellerDashboardClicked, setSellerDashboardClicked } = useTheme(true);
     const {Seller, setSeller} = useTheme([]);
+    const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
 
     useEffect(() => {
       const getSellerData = async (e) => {
         
 
-        const sellerData = await axios.get("http://localhost:3000/seller-dashboard", {withCredentials: true});
+        const sellerData = await axios.get(`${BACKEND_LIVE_URL}/seller-dashboard`, {withCredentials: true});
 
         
         console.log(sellerData?.data?.seller);
