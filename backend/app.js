@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 app.use(cors({
-    origin: FRONTEND_URL,
+    origin: "https://buyfromattire.vercel.app",
     allowedHeaders: ['Content-Type', 'Authorization'],
     methods: ['POST', 'GET', 'PATCH', 'PUT', 'DELETE'],
     credentials: true
