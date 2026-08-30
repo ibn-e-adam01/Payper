@@ -32,6 +32,7 @@ app.use(cors({
     credentials: true
 }))
 app.set('view engine', 'ejs');
+app.set('trust proxy', 1);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
@@ -415,7 +416,12 @@ app.post('/createAccount', async (req, res) => {
         console.log(userCreated);
 
         let token = jwt.sign({email: Email, _id: userCreated._id}, process.env.JWT_SECRET);
-        res.cookie("token", token).json({
+        res.cookie("token", token, {
+        httpOnly: true,     // Prevents client-side JS from reading the cookie
+        secure: true,       // Requires HTTPS (essential in production)
+        sameSite: 'none',   // Required if frontend and backend are on different domains
+        maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+        }).json({
             message: "Account Successfully Created!",
             success: true,
             userCreated
@@ -476,7 +482,12 @@ app.post('/createSellerAccount', async (req, res) => {
         
 
         let token = jwt.sign({email: sellerCreated.email, _id: sellerCreated._id}, process.env.JWT_SECRET);
-        res.cookie("token", token).json({
+        res.cookie("token", token, {
+        httpOnly: true,     // Prevents client-side JS from reading the cookie
+        secure: true,       // Requires HTTPS (essential in production)
+        sameSite: 'none',   // Required if frontend and backend are on different domains
+        maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+        }).json({
         message: "Seller Account Successfully Created!",
         success: true,
         sellerCreated
@@ -563,7 +574,12 @@ app.post('/signin', async (req, res) => {
 
 
         let token = jwt.sign({email: Email, _id: foundUser._id}, process.env.JWT_SECRET);
-        res.cookie("token", token).json({
+        res.cookie("token", token, {
+        httpOnly: true,     // Prevents client-side JS from reading the cookie
+        secure: true,       // Requires HTTPS (essential in production)
+        sameSite: 'none',   // Required if frontend and backend are on different domains
+        maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+        }).json({
             message: "Successfully Logged In!",
             success: true,
             foundUser
@@ -618,7 +634,12 @@ app.post('/seller/login', async (req, res) => {
         let modifiedEmail = EmailSeller + '@attireSeller'
 
         let token = jwt.sign({email: modifiedEmail, _id: foundSeller._id}, process.env.JWT_SECRET);
-        res.cookie("token", token).json({
+        res.cookie("token", token, {
+        httpOnly: true,     // Prevents client-side JS from reading the cookie
+        secure: true,       // Requires HTTPS (essential in production)
+        sameSite: 'none',   // Required if frontend and backend are on different domains
+        maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+        }).json({
             message: "Successfully Logged In As A Seller!",
             success: true,
             foundSeller
