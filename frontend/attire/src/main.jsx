@@ -10,7 +10,7 @@ import Profile from './routes/Profile.jsx'
 import  {ThemeProvider}  from './components/ThemeContext.jsx';
 import BecomeASeller from './routes/BecomeASeller.jsx'
 import SellerDashboard from './routes/SellerDashboard.jsx'
-import PurchasePortal from '../routes/PurchasePortal.jsx'
+import PurchasePortal from './routes/PurchasePortal.jsx'
 
 createRoot(document.getElementById('root')).render(
   <ThemeProvider>
