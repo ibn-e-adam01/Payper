@@ -17,7 +17,7 @@ const NavbarProfile = ({MenuIsOpen, setMenuIsOpen}) => {
      const logout = async (e) => {
           e.preventDefault();
   
-          let logoutUser = await axios.post("http://localhost:3000/logout", {}, {withCredentials: true});
+          let logoutUser = await axios.post(`${BACKEND_LIVE_URL}/logout`, {}, {withCredentials: true});
   
           if(logoutUser?.data?.success == true){
               console.log(logoutUser?.data?.message);

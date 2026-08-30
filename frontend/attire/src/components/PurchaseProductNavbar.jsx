@@ -64,7 +64,7 @@ const PurchaseProductNavbar = ({MenuIsOpen, setMenuIsOpen}) => {
 
   return (
     <>
-    <header className={`h-15 w-full absolute z-20 flex items-center justify-between xl:px-13 gap-5 px-4 md:px-17 ${EnabledDark == true? 'bg-zinc-900 text-white border-zinc-700' : 'bg-white border-zinc-200'} fixed md:border-b `}>
+    <header className={`h-15 w-full absolute z-20 flex items-center justify-between xl:px-13 gap-5 px-4 md:px-17 ${EnabledDark == true? 'bg-zinc-950 text-white border-zinc-700' : 'bg-white border-zinc-200'} fixed md:border-b `}>
         
         <div className='w-full flex items-center justify-between  lg:justify-start px-3'>
             <div>
