@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const PORT = process.env.PORT;
+const FRONTEND_URL = process.env.FRONTEND_LIVE_URL;
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI);
 const cors = require('cors');
@@ -26,8 +27,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 app.use(cors({
-    origin: process.env.FRONTEND_LIVE_URL,
-    allowedHeaders: ['Content-Type'],
+    origin: FRONTEND_URL,
+    allowedHeaders: ['Content-Type', 'Authorization'],
     methods: ['POST', 'GET', 'PATCH', 'PUT', 'DELETE'],
     credentials: true
 }))
