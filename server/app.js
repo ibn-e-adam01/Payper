@@ -421,7 +421,7 @@ app.post('/createAccount', async (req, res) => {
         httpOnly: true,     // Prevents client-side JS from reading the cookie
         secure: true,       // Requires HTTPS (essential in production)
         sameSite: 'none',   // Required if frontend and backend are on different domains
-        maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+        maxAge: 30 * 24 * 60 * 60 * 1000 // 30 day expiration
         }).json({
             message: "Account Successfully Created!",
             success: true,
@@ -487,7 +487,7 @@ app.post('/createSellerAccount', async (req, res) => {
         httpOnly: true,     // Prevents client-side JS from reading the cookie
         secure: true,       // Requires HTTPS (essential in production)
         sameSite: 'none',   // Required if frontend and backend are on different domains
-        maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+        maxAge: 30 * 24 * 60 * 60 * 1000 // 30 day expiration
         }).json({
         message: "Seller Account Successfully Created!",
         success: true,
@@ -579,7 +579,7 @@ app.post('/signin', async (req, res) => {
         httpOnly: true,     // Prevents client-side JS from reading the cookie
         secure: true,       // Requires HTTPS (essential in production)
         sameSite: 'none',   // Required if frontend and backend are on different domains
-        maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+        maxAge: 30 * 24 * 60 * 60 * 1000 // 30 day expiration
         }).json({
             message: "Successfully Logged In!",
             success: true,
@@ -639,7 +639,7 @@ app.post('/seller/login', async (req, res) => {
         httpOnly: true,     // Prevents client-side JS from reading the cookie
         secure: true,       // Requires HTTPS (essential in production)
         sameSite: 'none',   // Required if frontend and backend are on different domains
-        maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
+        maxAge: 30 * 24 * 60 * 60 * 1000 // 30 day expiration
         }).json({
             message: "Successfully Logged In As A Seller!",
             success: true,
