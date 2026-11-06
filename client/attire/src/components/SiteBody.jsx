@@ -14,6 +14,7 @@ const SiteBody = ({HomeMenuIsOpen, setHomeMenuIsOpen, NoOfCarted,setNoOfCarted})
     const [TransactionID, setTransactionID] = useState({});
     const [ProductIsCarted, setProductIsCarted] = useState({});
     const [HeartClicked, setHeartClicked] = useState({});
+    const [BuyClicked, setBuyClicked] = useState({});
     const [UserID, setUserID] = useState('')
     const { EnabledDark, setEnabledDark } = useTheme(false); 
     const BACKEND_LIVE_URL = import.meta.env.VITE_BACKEND_URL;
@@ -106,6 +107,7 @@ const SiteBody = ({HomeMenuIsOpen, setHomeMenuIsOpen, NoOfCarted,setNoOfCarted})
                      const isThisProductCarted = !!ProductIsCarted[product.id];
                      const isThisHeartClicked = !!HeartClicked[product.id];
                      const isThisProductPurchased = !!TransactionID[product.id];
+                     const isBuyClicked = !!BuyClicked[product.id];
 
                     return( //explicit (zabardasti) return
                     
@@ -122,7 +124,21 @@ const SiteBody = ({HomeMenuIsOpen, setHomeMenuIsOpen, NoOfCarted,setNoOfCarted})
                     <div className=' flex items-center justify-between w-full mt-3'>
                         <button onClick={ async (e) => {
                             e.preventDefault();
-                            navigate('/product-purchase')
+                            navigate('/product-purchase');
+
+                            setBuyClicked(prev => ({
+                                 ...prev,
+                                 [product.id]: !prev[product.id]
+                                })); 
+                            let sendProductID = await axios.post(`${BACKEND_LIVE_URL}/productChoosed`,{BuyClicked}, {
+                                headers: {
+                                    "Content-Type" : "application/json"
+                                }, withCredentials : true
+                            });
+
+                            if(sendProductID?.data){
+                                console.log(sendProductID);
+                            }
                            
                     }} className='cursor-pointer hover:bg-blue-900 hover:scale-99 h-auto w-27 py-1 rounded-sm font-semibold tracking-tight bg-blue-800 flex items-center justify-center text-white '>{isThisProductPurchased? 'Purchased' : 'Buy'}</button>
                     <div className='flex items-center justify-center'>

@@ -367,6 +367,15 @@ app.delete('/deleteProfession', async (req, res) => {
     console.log("DELETED USER IS: ", deleteUserField);
 
 
+});
+
+app.post('/productChoosed', (req, res) => {
+    let {BuyClicked} = req.body;
+    res.json({
+        message: 'Success ID!',
+        success: true,
+        BuyClicked
+    });
 })
 
 app.post('/createAccount', async (req, res) => {
