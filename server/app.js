@@ -371,6 +371,7 @@ app.delete('/deleteProfession', async (req, res) => {
 
 app.post('/productChoosed', (req, res) => {
     let {BuyClicked} = req.body;
+    console.log(BuyClicked)
     res.json({
         message: 'Success ID!',
         success: true,
