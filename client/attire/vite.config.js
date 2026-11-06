@@ -24,9 +24,4 @@ export default defineConfig({
     },
     })
   ],
-  server: {
-
-    allowedHosts: ['tubular-playpen-unknown.ngrok-free.dev']
-    
-  }
 });
